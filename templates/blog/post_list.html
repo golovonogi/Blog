@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Nastin's blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Who is this?</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <h2><a href="">My first day</a></h2>
-            <p>Once upon a time there lived a boy in a small town in Massachusetts, in America. His name was John Chapman.</p>
-            <p>published: 25.06.2019, 20:01</p>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+            <div class="date">
+                <p>Опубликовано: {{ post.published_date }}</p>
+            </div>
         </div>
-
-        <div>
-            <h2><a href="">My second day</a></h2>
-            <p>It was a sunny spring afternoon. Susan was sitting on the swing, and waiting for her mother to pick her up from school.</p>
-            <p>published: 25.06.2019, 20:08</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
