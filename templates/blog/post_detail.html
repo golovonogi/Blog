@@ -1,18 +1,17 @@
-{% extends 'blog/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <div class="post">
 
-
-        <h1>{{ post.title }}</h1>
-
+        <h1 style="display:inline">{{ post.title }}</h1>
+        <a class="btn btn-default float-right" href="{% url 'blog:post_edit' pk=post.pk %}" title="Комментировать"><i class="far fa-comment"></i></a>
+        <a class="btn btn-default float-right" href="{% url 'blog:post_edit' pk=post.pk %}" title="Редактировать"><i class="far fa-edit"></i></a>
         <p>{{ post.text|linebreaksbr }}</p>
-
         {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
             </div>
         {% endif %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
     </div>
 {% endblock %}

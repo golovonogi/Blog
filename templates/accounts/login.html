@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {{ form|as_bootstrap }}
+  <button type="submit">Войти</button>
+</form>
+{% endblock %}
