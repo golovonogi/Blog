@@ -7,6 +7,6 @@
             Вы действительно хотите удалить запись?
         </div>
         <button class="btn btn-secondary">Удалить</button>
-        <a href="{% url 'blog:post_detail' pk=post.pk %}" class="btn btn-secondary">Отмена</a>
+        <a href="{% url 'blog:post_detail' pk=object.post.pk %}" class="btn btn-secondary">Отмена</a>
     </form>
 {% endblock %}

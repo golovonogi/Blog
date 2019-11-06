@@ -49,10 +49,10 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
-    template_name = 'blog/item_confirm_delete.html'
+    template_name = 'comment/item_confirm_delete.html'
 
     def dispatch(self, request, *args, **kwargs):
-        comment = get_object_or_404(Comment, pk = self.kwargs['pk'])
+        comment = get_object_or_404(Comment, pk=self.kwargs['pk'])
         self.text = comment.post.pk
         return super().dispatch(request, *args, **kwargs)
 
