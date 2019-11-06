@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 
 {% block content %}
     <div class="post">
         <h1 style="display:inline">{{ post.title }}</h1>
-        <a class="btn btn-default float-right" href="{% url 'blog:post_delete' pk=post.pk %}" title="Удалить"><i class="far fa-trash-alt"></i></a>
-        <a class="btn btn-default float-right" href="{% url 'blog:post_edit' pk=post.pk %}" title="Редактировать"><i class="far fa-edit"></i></a>
         <p>{{ post.text|linebreaksbr }}</p>
         {% if post.published_date %}
             <div class="date">
@@ -12,10 +11,7 @@
             </div>
         {% endif %}
     </div>
-    <div class="post">
         {% for comment in post.comments.all %}
-            <a class="btn btn-default float-right" href="{% url 'comment:commentsdelete' pk=comment.pk %}" title="Удалить"><i class="far fa-trash-alt"></i></a>
-            <a class="btn btn-default float-right" href="{% url 'comment:commentsupdate' pk=comment.pk %}" title="Редактировать"><i class="far fa-edit"></i></a>
             <div class="card mb-3" style="max-width: 740px;">
                 <div class="row no-gutters">
                     <div class="col-md-8">
@@ -30,7 +26,15 @@
             </div>
         {% endfor %}
 
-        <a type="button" class="btn btn-secondary" href='{% url 'comment:comments' pk=post.pk %}#com'>Комментировать</a>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="POST">{% csrf_token %}
+                    {{ form|as_bootstrap }}
+                    <button type="submit" class="save btn btn-secondary"><a name="com"></a>Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
-
 {% endblock %}
+
