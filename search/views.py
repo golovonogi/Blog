@@ -1,10 +1,11 @@
 from django.db.models import Q
 from django.views.generic import ListView
 
+from blog.mixins import CatApiMixin
 from blog.models import Post
 
 
-class SearchView(ListView):
+class SearchView(CatApiMixin, ListView):
     model = Post
     template_name = 'search/search_index.html'
     context_object_name = 'object_list'

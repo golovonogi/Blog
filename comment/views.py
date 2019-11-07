@@ -5,12 +5,13 @@ from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.views.generic import CreateView, UpdateView, DeleteView
 
+from blog.mixins import CatApiMixin
 from blog.models import Post
 from comment.forms import CommentForm
 from comment.models import Comment
 
 
-class NewCommentAddView(LoginRequiredMixin, CreateView):
+class NewCommentAddView(CatApiMixin, LoginRequiredMixin, CreateView):
     form_class = CommentForm
     template_name = "comment/comment.html"
 
@@ -30,7 +31,7 @@ class NewCommentAddView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('blog:post_detail', kwargs={'pk':self.kwargs['pk']})
 
-class CommentUpdateView(LoginRequiredMixin, UpdateView):
+class CommentUpdateView(CatApiMixin, LoginRequiredMixin, UpdateView):
     form_class = CommentForm
     model = Comment
     template_name = "comment/comment_edit.html"
@@ -47,7 +48,7 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('blog:post_detail', kwargs={'pk': self.kwargs['pk']})
 
 
-class CommentDeleteView(LoginRequiredMixin, DeleteView):
+class CommentDeleteView(CatApiMixin, LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'comment/item_confirm_delete.html'
 

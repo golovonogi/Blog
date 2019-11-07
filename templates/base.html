@@ -14,9 +14,29 @@
     <body>
     {% include 'navbar.html' %}
         <div class="shadow-lg p-0 mb-5 bg-white rounded">
-
             <h1><img src="/media/1.png" class="mw-100" alt="...">
         </div>
+            <div style="float: right; padding-right:50px;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">RUB</th>
+                            <th scope="col">EUR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{{ eur }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="float: right; padding-right:50px;">
+                <img src="{{ cat }}" alt="..." class="rounded" width="400px">
+                <a href="{{ cat }}" class="btn btn-secondary btn-lg active" style="display: flex; justify-content: center; text-align: center;">Еще картиночек</a>
+            </div>
+
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
