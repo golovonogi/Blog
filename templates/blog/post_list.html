@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="row">
         {% for post in object_list %}
-                <div class="card mb-3" style="max-width: 740px;">
-                      <div class="row no-gutters m-1">
-                          {% if post.img %}
-                              <div class="col-md-4">
-                                <img src="{{ post.img.url }}" class="card-img" alt="..." width=>
-                              </div>
-                          {% endif %}
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <h5><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                            <p class="card-text"><small class="text-muted">Опубликовано: {{ post.published_date }}</small></p>
-                          </div>
-                        </div>
-                      </div>
+            <div class="col-12 my-5">
+                <div class="card mb-3">
+                    {% if post.img %}
+                        <img class="card-img-top p-3" src="{{ post.img.url }}" alt="Card image cap">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'blog:post_detail' pk=post.pk %}#posts">{{ post.title }}</a></h5>
+                        <p class="card-text">{{ post.text|linebreaksbr }}</p>
+                        <p class="card-text"><small class="text-muted">Опубликовано: {{ post.published_date }}</small></p>
+                    </div>
                 </div>
+            </div>
         {% endfor %}
-        {% include "pagination.html" %}
+    </div>
+    <div class="row">
+        <div class="col float-right">
+            {% include "pagination.html" %}
+        </div>
+    </div>
 {% endblock %}

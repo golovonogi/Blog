@@ -2,38 +2,30 @@
 {% load bootstrap_tags %}
 
 {% block content %}
-    <div class="post">
-        <h1 style="display:inline">{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-        {% endif %}
-    </div>
-        {% for comment in post.comments.all %}
-            <div class="card mb-3" style="max-width: 740px;">
-                <div class="row no-gutters">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <p> {{ comment.comment }} </p>
-                              {% if post.published_date %}
-                                  <p class="card-text"><small class="text-muted">{{ comment.author_comment }} {{ comment.pub_date }}</small></p>
-                              {% endif %}
-                        </div>
+    <div class="row">
+        <div class="col my-5">
+            <h1 style="display:inline">{{ post.title }}</h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+            {% if post.published_date %}
+                <div class="date"><small class="text-muted">
+                    {{ post.published_date }}
+                </small>
+                </div>
+            {% endif %}
+            {% for comment in post.comments.all %}
+                <div class="card my-5">
+                    <div class="card-body">
+                        <p> {{ comment.comment }} </p>
+                        {% if post.published_date %}
+                            <p class="card-text"><small class="text-muted">{{ comment.author_comment }} {{ comment.pub_date }}</small></p>
+                        {% endif %}
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <form method="POST">{% csrf_token %}
-                    {{ form|as_bootstrap }}
-                    <button type="submit" class="save btn btn-secondary"><a name="com"></a>Сохранить</button>
-                </form>
-            </div>
+            {% endfor %}
+            <form method="POST">{% csrf_token %}
+                {{ form|as_bootstrap }}
+                <button type="submit" class="save btn btn-dark float-right">Отправить</button>
+            </form>
         </div>
     </div>
 {% endblock %}

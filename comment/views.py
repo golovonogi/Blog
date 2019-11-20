@@ -36,16 +36,17 @@ class CommentUpdateView(CatApiMixin, LoginRequiredMixin, UpdateView):
     model = Comment
     template_name = "comment/comment_edit.html"
 
-    def get_object(self, queryset=None):
-        comment = Comment.objects.get(pk=self.kwargs['pk'])
-        return comment
+    def dispatch(self, request, *args, **kwargs):
+        comment = get_object_or_404(Comment, pk=self.kwargs['pk'])
+        self.text = comment.post.pk
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
         return super(CommentUpdateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('blog:post_detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('blog:post_detail', kwargs={'pk': self.text})
 
 
 class CommentDeleteView(CatApiMixin, LoginRequiredMixin, DeleteView):

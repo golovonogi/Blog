@@ -3,47 +3,62 @@
 <html>
     <head>
         <title>Nastin's blog</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://kit.fontawesome.com/52911b89e2.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/52911b89e2.js" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-    {% include 'navbar.html' %}
-        <div class="shadow-lg p-0 mb-5 bg-white rounded">
-            <h1><img src="/media/1.png" class="mw-100" alt="...">
-        </div>
-            <div style="float: right; padding-right:50px;">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">RUB</th>
-                            <th scope="col">EUR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>{{ eur }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section id="intro" style="background-image: url('/media/Оригинал_ 2134x1200.jpeg'); background-size: cover;">
+          <div class="container">
+            <div class="row align-items-center" style="min-height: 100vh">
+              <div class="col-12">
+                <h1 class="text-white display-1">Блог</h1>
+              </div>
             </div>
-            <div style="float: right; padding-right:50px;">
-                <img src="{{ cat }}" alt="..." class="rounded" width="400px">
-                <a href="{{ cat }}" class="btn btn-secondary btn-lg active" style="display: flex; justify-content: center; text-align: center;">Еще картиночек</a>
-            </div>
-
-        <div class="content container">
             <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
-                </div>
+              <div class="col-12">
+                <blockquote class="blockquote">
+                  <p class="mb-0 text-white">"{{ kanye }}"</p>
+                  <footer class="blockquote-footer">Kanye West</footer>
+                </blockquote>
+              </div>
             </div>
-        </div>
+          </div>
+        </section>
+        {% include 'navbar.html' %}
+        <section id="posts" style="background-color: #DCDCDC"><a id="razdel"></a>
+          <div class="container">
+              {% block content %}
+              {% endblock %}
+          </div>
+        </section>
+        <section id="footer" class="bg-dark">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-6 my-5 order-2 order-md-1">
+                <ul class="list-unstyled text-white">
+                  <li><h6>ABOUT</h6></li>
+                  <li class="text-white">We’ve been working on Coding on Steroids
+                      for the all our lives.
+                      A groundbreaking tech deserves such dedication, huh?
+                      If you’d like to learn more, or are interested in a job,
+                      contact us anytime at </li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-6 my-5 order-1 order-md-2">
+                <ul class="list-unstyled text-white">
+                  <li><h6>CONTACTS</h6></li>
+                  <li>Tel: 8-800-555-35-35</li>
+                  <li>Email: grmgrm@gmail.com</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
     </body>
 </html>

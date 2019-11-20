@@ -3,6 +3,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
 from blog.mixins import CatApiMixin
+from comment.forms import CommentForm
 from .models import Post
 from django.utils import timezone
 from .forms import PostForm
@@ -11,11 +12,17 @@ from .forms import PostForm
 class PostListView(CatApiMixin, ListView):
     model = Post
     queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    paginate_by = 10
+    paginate_by = 5
 
 
 class PostDetailView(CatApiMixin, DetailView):
     model = Post
+
+    def get_context_data(self, **kwargs):
+        form = CommentForm()
+        context = super().get_context_data(**kwargs)
+        context['form'] = form
+        return context
 
 
 class PostNewView(CatApiMixin, LoginRequiredMixin, CreateView):
@@ -51,7 +58,3 @@ class PostDeleteView(CatApiMixin, LoginRequiredMixin, DeleteView):
     success_url = "/"
     model = Post
     template_name = 'blog/item_confirm_delete.html'
-
-
-
-

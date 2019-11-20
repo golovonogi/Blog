@@ -6,7 +6,7 @@ from comment.models import Comment
 class CommentForm(forms.ModelForm):
     class Meta:
         labels = {
-            'comment': 'Комментировать туть ',
+            'comment': 'Комментировать: ',
         }
         model = Comment
         fields = ('comment', )

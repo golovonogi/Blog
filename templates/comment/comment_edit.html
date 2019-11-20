@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 
 {% block content %}
-    <form method="POST" class="post-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    <div class="row">
+        <div class="col-6 my-5">
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form|as_bootstrap }}
+                <button type="submit" class="save btn btn-dark float-right">Сохранить</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

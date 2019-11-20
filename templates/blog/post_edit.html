@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 
 {% block content %}
-    <h1>New post</h1>
-    <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    <div class="row">
+        <div class="col my-5">
+            <h1 class="display-4">Новый пост</h1>
+            <form method="POST" class="post-form my-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|as_bootstrap }}
+                <button type="submit" class="save btn btn-dark float-right mx-1">Сохранить</button>
+                {% if post.pk %}
+                    <a href="{% url 'blog:post_detail' pk=post.pk %}#posts" class="btn btn-dark float-right mx-1">Отмена</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
 {% endblock %}

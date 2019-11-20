@@ -25,3 +25,15 @@ def rubapi():
     except Exception as err:
         print(f'Other error occurred: {err}')
         return None
+
+def kanyeapi():
+    try:
+        r = requests.get('https://api.kanye.rest')
+        r.raise_for_status()
+        kanye_dict = r.json()
+        kanye = kanye_dict['quote']
+        return kanye
+
+    except Exception as err:
+        print(f'Other error occurred: {err}')
+        return None
