@@ -10,7 +10,7 @@
                     <p class="card-text"> <strong>Имя:</strong> {{ request.user.first_name }}</p>
                     <p class="card-text"> <strong>Фамилия:</strong> {{ request.user.last_name }}</p>
                     <p class="card-text"> <strong>Почта:</strong> {{ request.user.email }}</p>
-                    <a type="button" class="btn btn-dark" href={% url 'accounts:settings_edit' %}>Редактировать</a>
+                    <a type="button" class="btn btn-dark" href={% url 'accounts:settings_edit' %}#posts>Редактировать</a>
                 </div>
             </div>
         </div>
