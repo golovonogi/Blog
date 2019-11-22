@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, UpdateView, CreateView, D
 
 from blog.mixins import CatApiMixin, KanyeApiMixin
 from comment.forms import CommentForm
-from .models import Post
+from .models import Post, Rss
 from django.utils import timezone
 from .forms import PostForm
 
@@ -58,3 +58,5 @@ class PostDeleteView(KanyeApiMixin, LoginRequiredMixin, DeleteView):
     success_url = "/"
     model = Post
     template_name = 'blog/item_confirm_delete.html'
+
+

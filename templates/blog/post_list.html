@@ -10,8 +10,9 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title"><a href="{% url 'blog:post_detail' pk=post.pk %}#posts">{{ post.title }}</a></h5>
-                        <p class="card-text">{{ post.text|linebreaksbr }}</p>
-                        <p class="card-text"><small class="text-muted">Опубликовано: {{ post.published_date }}</small></p>
+                        {% if post.link %}<a class="card-text" href="{{ post.link }}">{{ post.link }}</a>{% endif %}
+                        {% autoescape off %}<div class="card-text">{{ post.text|linebreaksbr }}</div>{% endautoescape %}
+                        <p class="card-text"><small class="text-muted">Опубликовано: {{ post.published_date }} {% if post.author_post %}Автор: {{ post.author_post }}{% endif %}</small></p>
                     </div>
                 </div>
             </div>

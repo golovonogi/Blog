@@ -18,3 +18,7 @@ h4 .card-header {
 .my-bg {
     background-color: #6c757d;
 }
+
+div.card-text img {
+    max-width: 100%;
+}

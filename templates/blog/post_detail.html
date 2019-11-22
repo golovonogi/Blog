@@ -7,13 +7,13 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title my-3"><strong>{{ post.title }}</strong></h5>
-                    <p class="card-text">{{ post.text|linebreaksbr }}</p>
+                    {% autoescape off %}<div class="card-text">{{ post.text|linebreaksbr }}</div>{% endautoescape %}
                     {% if post.img %}
                         <img class="card-img-top p-3" src="{{ post.img.url }}">
                     {% endif %}
                     {% if post.published_date %}
                         <p class="card-text">
-                            <small class="text-muted">Опубликовано:{{ post.published_date }}</small>
+                            <small class="text-muted">Опубликовано:{{ post.published_date }} Автор: {{ post.author_post }}</small>
                         </p>
                     {% endif %}
                     {% if request.user == post.author %}
